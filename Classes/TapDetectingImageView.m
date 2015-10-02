@@ -67,10 +67,6 @@
         [self addGestureRecognizer:singleTap];
         [self addGestureRecognizer:doubleTap];
         [self addGestureRecognizer:twoFingerTap];
-        
-        [singleTap release];
-        [doubleTap release];
-        [twoFingerTap release];
     }
     return self;
 }

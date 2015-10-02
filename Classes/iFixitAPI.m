@@ -9,7 +9,7 @@
 #import "iFixitAPI.h"
 #import "iFixitAppDelegate.h"
 #import "Guide.h"
-#import "JSON.h"
+#import "SBJSON4.h"
 #import "Config.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
@@ -83,7 +83,7 @@ static int volatile openConnections = 0;
 }
 
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%d&offset=%d", [Config currentConfig].host, limit, offset];
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%lu&offset=%lu", [Config currentConfig].host, (unsigned long)limit, (unsigned long)offset];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -126,7 +126,7 @@ static int volatile openConnections = 0;
 }
 
 - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/collections?limit=%d&offset=%d", [Config currentConfig].host, limit, offset];
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/collections?limit=%lu&offset=%lu", [Config currentConfig].host, (unsigned long)limit, (unsigned long)offset];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -531,7 +531,6 @@ static int volatile openConnections = 0;
                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                           otherButtonTitles:nil, nil];
     [alert show];
-    [alert release];
 }
 
 + (void)checkCredentialsForViewController:(id)viewController {
@@ -558,10 +557,7 @@ static int volatile openConnections = 0;
         // Wrap this in a navigation controller to avoid side effects from new status bar in iOS7
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:viewControllerToPresent];
         [viewController presentModalViewController:nvc animated:YES];
-        [nvc release];
     }
-
-    [viewControllerToPresent release];
 }
 
 // Build our own custom user agent and set it

@@ -108,7 +108,7 @@
 - (id)createWebViewControllerFromRequest:(NSURLRequest *)request {
     SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
 
-    webViewController.showsDoneButton = YES;
+//    webViewController.showsDoneButton = YES;
     // Wrap our custom webview controller in a navigation controller on iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];

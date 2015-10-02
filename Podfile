@@ -2,6 +2,14 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '6.0'
 
-pod 'ZBarSDK', '~> 1.3'
-pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
-pod 'CrashlyticsFramework', '~> 2.2'
+xcodeproj 'iFixit'
+
+pod 'ASIHTTPRequest'
+pod 'SBJson'
+pod 'MGSplitViewController'
+pod 'UIColor-Hex'
+pod 'SDWebImage'
+pod 'SVWebViewController'
+pod 'ZBarSDK'
+pod 'GoogleAnalytics'
+pod 'Crashlytics'
